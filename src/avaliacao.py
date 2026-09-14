@@ -15,15 +15,19 @@ def treinar_modelos(modelos, X_train, y_train):
     return modelos_treinados
 
 
-def validar_modelos(modelos, X, y):
+def validar_modelos(modelos, X_train, y_train):
 
     resultados = {}
 
     for nome, modelo in modelos.items():
 
-        scores = cross_val_score(modelo, X, y, cv=5, scoring="roc_auc")
+        scores = cross_val_score(modelo, X_train, y_train, cv=5, scoring="roc_auc")
 
-        resultados[nome] = {"scores": scores, "media_auc": scores.mean()}
+        resultados[nome] = {
+            "scores_auc": scores,
+            "media_auc": scores.mean(),
+            "desvio_auc": scores.std(),
+        }
 
     return resultados
 
@@ -35,6 +39,7 @@ def avaliar_modelos(modelos, X_test, y_test):
     for nome, modelo in modelos.items():
 
         probabilidades = modelo.predict_proba(X_test)[:, 1]
+
         predicoes = modelo.predict(X_test)
 
         auc = roc_auc_score(y_test, probabilidades)
