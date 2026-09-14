@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SAIS - Pacientes</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- Cabeçalho -->
+        <header class="header">
+
+            <div>
+                <h1>SAIS</h1>
+                <p>Sistema de Apoio à Identificação de Risco</p>
+            </div>
+
+            <div class="header-info">
+                <span>UTI</span>
+                <span>14/09/2026</span>
+            </div>
+
+        </header>
+
+
+        <!-- Título da página -->
+        <section class="page-title">
+
+            <div>
+                <h2>Pacientes</h2>
+
+                <p>
+                    Acompanhe a avaliação de risco dos pacientes internados na UTI.
+                </p>
+            </div>
+
+            <button class="new-evaluation">
+                + Nova avaliação
+            </button>
+
+        </section>
+
+
+        <!-- Resumo -->
+        <section class="summary">
+
+            <div class="summary-card">
+                <span>Total de pacientes</span>
+                <strong>12</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Risco elevado</span>
+                <strong>3</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Risco moderado</span>
+                <strong>4</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Risco baixo</span>
+                <strong>5</strong>
+            </div>
+
+        </section>
+
+
+        <!-- Lista de pacientes -->
+        <section class="patients-section">
+
+            <div class="section-header">
+
+                <h2>Lista de pacientes</h2>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Pesquisar paciente..."
+                >
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Leito</th>
+                            <th>Última avaliação</th>
+                            <th>Probabilidade</th>
+                            <th>Risco</th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="patients-list">
+
+                        <tr>
+                            <td>
+                                <strong>P001</strong>
+                            </td>
+
+                            <td>12</td>
+
+                            <td>14/09/2026 08:30</td>
+
+                            <td>72%</td>
+
+                            <td>
+                                <span class="risk high">
+                                    Elevado
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="view-button">
+                                    Ver avaliação
+                                </button>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <strong>P002</strong>
+                            </td>
+
+                            <td>08</td>
+
+                            <td>14/09/2026 08:45</td>
+
+                            <td>18%</td>
+
+                            <td>
+                                <span class="risk low">
+                                    Baixo
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="view-button">
+                                    Ver avaliação
+                                </button>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <strong>P003</strong>
+                            </td>
+
+                            <td>15</td>
+
+                            <td>14/09/2026 09:10</td>
+
+                            <td>54%</td>
+
+                            <td>
+                                <span class="risk moderate">
+                                    Moderado
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="view-button">
+                                    Ver avaliação
+                                </button>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <strong>P004</strong>
+                            </td>
+
+                            <td>03</td>
+
+                            <td>14/09/2026 09:25</td>
+
+                            <td>81%</td>
+
+                            <td>
+                                <span class="risk high">
+                                    Elevado
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="view-button">
+                                    Ver avaliação
+                                </button>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <strong>P005</strong>
+                            </td>
+
+                            <td>21</td>
+
+                            <td>14/09/2026 09:40</td>
+
+                            <td>31%</td>
+
+                            <td>
+                                <span class="risk moderate">
+                                    Moderado
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="view-button">
+                                    Ver avaliação
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            SAIS — Sistema de Apoio à Identificação de Risco
+        </footer>
+
+    </main>
+
+
+    <script src="js/pacientes.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2933;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+
+/* Cabeçalho */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 28px;
+}
+
+.header p {
+    margin-top: 6px;
+    color: #667085;
+}
+
+.header-info {
+    display: flex;
+    gap: 10px;
+}
+
+.header-info span {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+
+/* Título */
+
+.page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-title h2 {
+    font-size: 24px;
+}
+
+.page-title p {
+    margin-top: 6px;
+    color: #667085;
+}
+
+.new-evaluation {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #09489c;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.new-evaluation:hover {
+    opacity: 0.9;
+}
+
+
+/* Resumo */
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.summary-card span {
+    display: block;
+    color: #667085;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.summary-card strong {
+    font-size: 28px;
+}
+
+
+/* Lista */
+
+.patients-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+}
+
+.section-header input {
+    width: 250px;
+    padding: 11px 14px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.section-header input:focus {
+    border-color: #09489c;
+}
+
+
+/* Tabela */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f9fafb;
+}
+
+th {
+    text-align: left;
+    padding: 14px;
+    font-size: 13px;
+    color: #667085;
+    font-weight: normal;
+}
+
+td {
+    padding: 17px 14px;
+    border-top: 1px solid #eaecf0;
+    font-size: 14px;
+}
+
+
+/* Risco */
+
+.risk {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.risk.high {
+    background: #fce8e8;
+    color: #b42318;
+}
+
+.risk.moderate {
+    background: #fff4e5;
+    color: #b54708;
+}
+
+.risk.low {
+    background: #e8f5e9;
+    color: #187727;
+}
+
+
+/* Botão */
+
+.view-button {
+    border: 1px solid #d0d5dd;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.view-button:hover {
+    background: #f9fafb;
+}
+
+
+/* Rodapé */
+
+footer {
+    text-align: center;
+    color: #98a2b3;
+    font-size: 13px;
+}
+
+
+/* Responsividade */
+
+@media (max-width: 800px) {
+
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .section-header input {
+        width: 100%;
+    }
+}
