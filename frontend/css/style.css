@@ -29,7 +29,7 @@ body {
     box-sizing: border-box;
 }
 
-.header-inner {
+.header-content {
     width: min(1200px, 90%);
     margin: 0 auto;
     display: flex;
@@ -222,6 +222,55 @@ td {
 
 .view-button:hover {
     background: #f9fafb;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    border: 1px solid #dfe3e8;
+    background: white;
+    color: #1f2933;
+    border-radius: 6px;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.pagination button[data-page="1"],
+.pagination button[data-page="2"],
+.pagination button[data-page="3"],
+.pagination button[data-page="23"],
+.pagination button[data-page="22"],
+.pagination button[data-page="233"] {
+    background: #eaf2ff;
+    color: #0f5fd8;
+    border-color: #cfe0ff;
+}
+
+.pagination span {
+    color: #475467;
+    font-size: 13px;
 }
 
 

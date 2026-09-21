@@ -12,76 +12,105 @@
 
 <body>
 
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="logo">
+                <h1>SAIS</h1>
+                <p>Sistema de Apoio à Identificação de Risco</p>
+            </div>
+
+            <div class="header-info">
+                <span>UTI</span>
+                <span id="currentDate"></span>
+            </div>
+
+        </div>
+
+    </header>
+
+
     <main class="container">
 
-        <!-- Cabeçalho -->
-        <header class="header">
-            <div class="header-inner">
-                <div>
-                    <h1>SAIS</h1>
-                    <p>Sistema de Apoio à Identificação de Risco</p>
-                </div>
-
-                <div class="header-info">
-                    <span>UTI</span>
-                    <span>14/09/2026</span>
-                </div>
-            </div>
-        </header>
-
-
-        <!-- Título da página -->
         <section class="page-title">
 
-            <div>
-                <h2>Pacientes</h2>
+            <h2>Pacientes</h2>
 
-                <p>
-                    Acompanhe a avaliação de risco dos pacientes internados na UTI.
-                </p>
-            </div>
+            <p>
+                Acompanhe as avaliações dos pacientes internados na UTI.
+            </p>
 
         </section>
 
 
-        <!-- Resumo -->
         <section class="summary">
 
             <div class="summary-card">
+
                 <span>Total de pacientes</span>
-                <strong>12</strong>
+
+                <strong id="totalPatients">
+                    0
+                </strong>
+
             </div>
 
-            <div class="summary-card">
-                <span>Risco elevado</span>
-                <strong>3</strong>
-            </div>
 
             <div class="summary-card">
-                <span>Risco moderado</span>
-                <strong>4</strong>
+
+                <span>Avaliações realizadas</span>
+
+                <strong id="totalEvaluations">
+                    0
+                </strong>
+
             </div>
 
+
             <div class="summary-card">
-                <span>Risco baixo</span>
-                <strong>5</strong>
+
+                <span>Probabilidade média</span>
+
+                <strong id="averageProbability">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Última avaliação</span>
+
+                <strong id="lastEvaluation">
+                    —
+                </strong>
+
             </div>
 
         </section>
 
 
-        <!-- Lista de pacientes -->
-        <section class="patients-section">
+        <section class="pa  tients-container">
 
-            <div class="section-header">
+            <div class="patients-header">
 
-                <h2>Lista de pacientes</h2>
+                <div>
+                    <h3>Lista de pacientes</h3>
 
-                <input
-                    type="text"
-                    id="search"
-                    placeholder="Pesquisar paciente..."
-                >
+                </div>
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchPatient"
+                        placeholder="Pesquisar paciente..."
+                    >
+
+                </div>
 
             </div>
 
@@ -93,141 +122,26 @@
                     <thead>
 
                         <tr>
+
                             <th>Paciente</th>
-                            <th>Leito</th>
+
                             <th>Última avaliação</th>
+
                             <th>Probabilidade</th>
-                            <th>Risco</th>
-                            <th></th>
+
+                            <th>Ação</th>
+
                         </tr>
 
                     </thead>
 
-                    <tbody id="patients-list">
 
-                        <tr>
-                            <td>
-                                <strong>P001</strong>
-                            </td>
+                    <tbody id="patientsTableBody">
 
-                            <td>12</td>
-
-                            <td>14/09/2026 08:30</td>
-
-                            <td>72%</td>
-
-                            <td>
-                                <span class="risk high">
-                                    Elevado
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-button">
-                                    Ver avaliação
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <strong>P002</strong>
-                            </td>
-
-                            <td>08</td>
-
-                            <td>14/09/2026 08:45</td>
-
-                            <td>18%</td>
-
-                            <td>
-                                <span class="risk low">
-                                    Baixo
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-button">
-                                    Ver avaliação
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <strong>P003</strong>
-                            </td>
-
-                            <td>15</td>
-
-                            <td>14/09/2026 09:10</td>
-
-                            <td>54%</td>
-
-                            <td>
-                                <span class="risk moderate">
-                                    Moderado
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-button">
-                                    Ver avaliação
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <strong>P004</strong>
-                            </td>
-
-                            <td>03</td>
-
-                            <td>14/09/2026 09:25</td>
-
-                            <td>81%</td>
-
-                            <td>
-                                <span class="risk high">
-                                    Elevado
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-button">
-                                    Ver avaliação
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td>
-                                <strong>P005</strong>
-                            </td>
-
-                            <td>21</td>
-
-                            <td>14/09/2026 09:40</td>
-
-                            <td>31%</td>
-
-                            <td>
-                                <span class="risk moderate">
-                                    Moderado
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="view-button">
-                                    Ver avaliação
-                                </button>
-                            </td>
-                        </tr>
+                        <!--
+                            Os pacientes serão carregados
+                            pelo dataset através do JavaScript.
+                        -->
 
                     </tbody>
 
@@ -235,17 +149,21 @@
 
             </div>
 
+            <div id="pagination" class="pagination"></div>
+
         </section>
-
-
-        <footer>
-            Direitos autorais © 2026. Todos os direitos reservados
-        </footer>
 
     </main>
 
 
-    <script src="js/pacientes.js"></script>
+    <footer class="footer">
+        <p>
+            Direitos autorais © 2026. Todos os direitos reservados.
+        </p>
+    </footer>
+
+
+    <script src="js/index.js"></script>
 
 </body>
 
