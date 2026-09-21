@@ -7,5 +7,9 @@ VARIABLES_T0 = [
     "pas",
     "lactato",
     "creatinina",
-    "pao2_fio2"
+    "pao2_fio2",
+    "rnl",
+    "bastonetes",
 ]
+
+VARIABLE_TARGET = "sepsis"

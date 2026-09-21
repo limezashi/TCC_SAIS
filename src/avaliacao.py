@@ -1,5 +1,10 @@
-from sklearn.model_selection import cross_val_score
-from sklearn.metrics import roc_auc_score, confusion_matrix, classification_report
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.metrics import (
+    roc_auc_score,
+    confusion_matrix,
+    classification_report,
+    brier_score_loss,
+)
 
 
 def treinar_modelos(modelos, X_train, y_train):
@@ -19,14 +24,23 @@ def validar_modelos(modelos, X_train, y_train):
 
     resultados = {}
 
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
     for nome, modelo in modelos.items():
 
-        scores = cross_val_score(modelo, X_train, y_train, cv=5, scoring="roc_auc")
+        scores_auc = cross_val_score(modelo, X_train, y_train, cv=cv, scoring="roc_auc")
+
+        scores_brier = -cross_val_score(
+            modelo, X_train, y_train, cv=cv, scoring="neg_brier_score"
+        )
 
         resultados[nome] = {
-            "scores_auc": scores,
-            "media_auc": scores.mean(),
-            "desvio_auc": scores.std(),
+            "scores_auc": scores_auc,
+            "media_auc": scores_auc.mean(),
+            "desvio_auc": scores_auc.std(),
+            "scores_brier": scores_brier,
+            "media_brier": scores_brier.mean(),
+            "desvio_brier": scores_brier.std(),
         }
 
     return resultados
@@ -44,6 +58,8 @@ def avaliar_modelos(modelos, X_test, y_test):
 
         auc = roc_auc_score(y_test, probabilidades)
 
+        brier = brier_score_loss(y_test, probabilidades)
+
         matriz = confusion_matrix(y_test, predicoes)
 
         relatorio = classification_report(y_test, predicoes, output_dict=True)
@@ -52,6 +68,7 @@ def avaliar_modelos(modelos, X_test, y_test):
             "probabilidades": probabilidades,
             "predicoes": predicoes,
             "auc": auc,
+            "brier": brier,
             "matriz_confusao": matriz,
             "relatorio": relatorio,
         }
