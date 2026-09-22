@@ -75,9 +75,10 @@ function parseCSV(csv) {
 
 function renderDashboard() {
 
-    document.getElementById(
-        "totalPatients"
-    ).textContent = patients.length;
+    const totalPatientsEl = document.getElementById("totalPatients");
+    if (totalPatientsEl) {
+        totalPatientsEl.textContent = patients.length;
+    }
 
 
     /*
@@ -85,9 +86,10 @@ function renderDashboard() {
         representa uma avaliação.
     */
 
-    document.getElementById(
-        "totalEvaluations"
-    ).textContent = patients.length;
+    const totalEvaluationsEl = document.getElementById("totalEvaluations");
+    if (totalEvaluationsEl) {
+        totalEvaluationsEl.textContent = patients.length;
+    }
 
 
     /*
@@ -97,9 +99,10 @@ function renderDashboard() {
         através do modelo.
     */
 
-    document.getElementById(
-        "averageProbability"
-    ).textContent = "—";
+    const averageProbabilityEl = document.getElementById("averageProbability");
+    if (averageProbabilityEl) {
+        averageProbabilityEl.textContent = "—";
+    }
 
 
     /*
@@ -107,7 +110,8 @@ function renderDashboard() {
         através da data existente no dataset.
     */
 
-    if (patients.length > 0) {
+    const lastEvaluationEl = document.getElementById("lastEvaluation");
+    if (lastEvaluationEl && patients.length > 0) {
 
         const dates = patients
             .map(patient => patient.data_avaliacao)
@@ -119,18 +123,16 @@ function renderDashboard() {
             .reverse()[0];
 
 
-        document.getElementById(
-            "lastEvaluation"
-        ).textContent =
+        lastEvaluationEl.textContent =
             formatDate(latestDate);
 
     }
 
 
-    document.getElementById(
-        "currentDate"
-    ).textContent =
-        formatCurrentDate();
+    const currentDateEl = document.getElementById("currentDate");
+    if (currentDateEl) {
+        currentDateEl.textContent = formatCurrentDate();
+    }
 
 }
 
@@ -331,9 +333,10 @@ function formatCurrentDate() {
     Pesquisa por paciente.
 */
 
-document
-    .getElementById("searchPatient")
-    .addEventListener(
+const searchInput = document.getElementById("searchPatient");
+
+if (searchInput) {
+    searchInput.addEventListener(
         "input",
         function () {
 
@@ -357,9 +360,7 @@ document
 
         }
     );
-
-
-loadPatients();
+}
 
 
 loadPatients();
