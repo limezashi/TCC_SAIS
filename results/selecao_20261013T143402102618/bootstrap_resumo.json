@@ -1,0 +1,23 @@
+{
+  "seed": 20261013,
+  "n_bootstrap": 5000,
+  "stratified": true,
+  "definition": "candidato menos referencia; Brier negativo favorece candidato",
+  "limitations": "Condicional as previsoes fixas; nao reajusta modelos; preserva prevalencia; nao inclui toda variabilidade do treinamento ou selecao; folds e repeticoes dependentes.",
+  "brier": {
+    "observed_delta": -1.918165107345751e-06,
+    "percentile_interval_95": [
+      -0.000120918405772699,
+      0.00011604289062518406
+    ],
+    "fraction_candidate_better": 0.5192
+  },
+  "auc": {
+    "observed_delta": 0.0012874367120847552,
+    "percentile_interval_95": [
+      -0.0020674210278170736,
+      0.0046834952698428635
+    ],
+    "fraction_candidate_better": 0.7818
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "primary": "Brier",
+  "secondary": "AUC",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "n_folds": 5,
+  "bootstrap_seed": 20261013,
+  "n_bootstrap": 5000,
+  "weights": [
+    0.9,
+    0.1
+  ],
+  "hyperparameter_search": false,
+  "test_evaluation": false,
+  "criterion": "Melhor Brier; AUC e calibracao secundarias. Diferenca incerta e sinal instavel: menor complexidade entre candidatos nao distinguiveis. Sem margem clinica ou teste de equivalencia.",
+  "fixed_before_execution": true
+}

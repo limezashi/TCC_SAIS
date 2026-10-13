@@ -6,18 +6,14 @@ from sklearn.svm import SVC
 
 def criar_modelo_svm():
 
-    modelo = Pipeline(
-        [
+    # Cada fold interno ajusta sua propria padronizacao.
+    modelo = CalibratedClassifierCV(
+        estimator=Pipeline([
             ("scaler", StandardScaler()),
-            (
-                "svm",
-                CalibratedClassifierCV(
-                    estimator=SVC(random_state=42),
-                    cv=5,
-                    ensemble=False,
-                ),
-            ),
-        ]
+            ("svm", SVC(random_state=42)),
+        ]),
+        cv=5,
+        ensemble=False,
     )
 
     return modelo
