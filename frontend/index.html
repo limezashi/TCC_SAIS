@@ -35,15 +35,19 @@
 
         <section class="page-title">
 
-            <h2>Pacientes</h2>
+            <h2>Pacientes sintéticos</h2>
 
             <p>
-                Acompanhe as avaliações dos pacientes internados na UTI.
+                Selecione um paciente sintético para calcular a probabilidade experimental.
             </p>
 
         </section>
 
 
+        <p class="academic-notice">Demonstração acadêmica com pacientes sintéticos. As probabilidades não possuem validação clínica e não representam diagnóstico ou recomendação médica.</p>
+        <p id="apiStatus" role="status" aria-live="polite">Verificando disponibilidade da API…</p>
+        <div id="loadStatus" class="status-message" role="status" aria-live="polite"></div>
+        <button id="retryLoad" class="btn-view" type="button" hidden>Tentar novamente</button>
         <!-- <section class="summary">
 
             <div class="summary-card">
@@ -112,7 +116,7 @@
 
                             <th>Paciente</th>
 
-                            <th>Última avaliação</th>
+                            <th>Data do registro</th>
 
                             <th>Probabilidade</th>
 
@@ -152,6 +156,7 @@
     </footer>
 
 
+    <script src="js/api.js"></script>
     <script src="js/index.js"></script>
 
 </body>

@@ -1,366 +1,69 @@
 let patients = [];
-const pageSize = 10;
 let currentPage = 1;
-
-
-async function loadPatients() {
-
-    try {
-
-        const response = await fetch(
-            "../data/dataset_interface.csv"
-        );
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Não foi possível carregar o dataset."
-            );
-
-        }
-
-        const csv = await response.text();
-
-        patients = parseCSV(csv);
-
-        renderDashboard();
-
-        renderPatients(patients);
-
-    } catch (error) {
-
-        console.error(
-            "Erro ao carregar o dataset:",
-            error
-        );
-
-    }
-
-}
-
-
-function parseCSV(csv) {
-
-    const lines = csv
-        .trim()
-        .split(/\r?\n/);
-
-    const headers = lines[0]
-        .split(",")
-        .map(header => header.trim());
-
-
-    return lines
-        .slice(1)
-        .filter(line => line.trim() !== "")
-        .map(line => {
-
-            const values = line.split(",");
-
-            const patient = {};
-
-            headers.forEach((header, index) => {
-
-                patient[header] =
-                    values[index]?.trim() ?? "";
-
-            });
-
-            return patient;
-
-        });
-
-}
-
-
-function renderDashboard() {
-
-    const totalPatientsEl = document.getElementById("totalPatients");
-    if (totalPatientsEl) {
-        totalPatientsEl.textContent = patients.length;
-    }
-
-
-    /*
-        Por enquanto cada registro do dataset
-        representa uma avaliação.
-    */
-
-    const totalEvaluationsEl = document.getElementById("totalEvaluations");
-    if (totalEvaluationsEl) {
-        totalEvaluationsEl.textContent = patients.length;
-    }
-
-
-    /*
-        A probabilidade ainda não está no CSV.
-
-        Ela será adicionada posteriormente
-        através do modelo.
-    */
-
-    const averageProbabilityEl = document.getElementById("averageProbability");
-    if (averageProbabilityEl) {
-        averageProbabilityEl.textContent = "—";
-    }
-
-
-    /*
-        Encontrar a avaliação mais recente
-        através da data existente no dataset.
-    */
-
-    const lastEvaluationEl = document.getElementById("lastEvaluation");
-    if (lastEvaluationEl && patients.length > 0) {
-
-        const dates = patients
-            .map(patient => patient.data_avaliacao)
-            .filter(date => date);
-
-
-        const latestDate = dates
-            .sort()
-            .reverse()[0];
-
-
-        lastEvaluationEl.textContent =
-            formatDate(latestDate);
-
-    }
-
-
-    const currentDateEl = document.getElementById("currentDate");
-    if (currentDateEl) {
-        currentDateEl.textContent = formatCurrentDate();
-    }
-
-}
-
-
-function renderPatients(data) {
-
-    const tableBody =
-        document.getElementById(
-            "patientsTableBody"
-        );
-
-
-    tableBody.innerHTML = "";
-
-    const totalPages = Math.max(
-        1,
-        Math.ceil(data.length / pageSize)
-    );
-
-    if (currentPage > totalPages) {
-        currentPage = totalPages;
-    }
-
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
-    const paginatedPatients = data.slice(start, end);
-
-    paginatedPatients.forEach(patient => {
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-
-            <td>
-
-                <strong>
-                    ${patient.patient_id}
-                </strong>
-
-            </td>
-
-
-            <td>
-                ${formatDate(
-                    patient.data_avaliacao
-                )}
-            </td>
-
-
-            <td>
-
-                <span class="probability-empty">
-                    —
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <a
-                    href="paciente.html?id=${patient.patient_id}"
-                    class="btn-view"
-                >
-                    Ver avaliação
-                </a>
-
-            </td>
-
-        `;
-
-
-        tableBody.appendChild(row);
-
-    });
-
-    renderPagination(data.length);
-
-}
-
-
-function renderPagination(totalItems) {
-
-    const totalPages = Math.max(
-        1,
-        Math.ceil(totalItems / pageSize)
-    );
-
-    const pagination = document.getElementById("pagination");
-
-    if (!pagination) {
-        return;
-    }
-
-    pagination.innerHTML = `
-        <div class="pagination-controls">
-            <button type="button" ${currentPage === 1 ? "disabled" : ""} data-page="prev">
-                «
-            </button>
-            <button type="button" ${currentPage === 1 ? "disabled" : ""} data-page="1">1</button>
-            <button type="button" ${currentPage === 2 ? "disabled" : ""} data-page="2">2</button>
-            <button type="button" ${currentPage === 3 ? "disabled" : ""} data-page="3">3</button>
-            <span>...</span>
-            <button type="button" data-page="${totalPages}">${totalPages}</button>
-            <button type="button" ${currentPage === totalPages ? "disabled" : ""} data-page="next">
-                »
-            </button>
-        </div>
-    `;
-
-    const controls = pagination.querySelectorAll("[data-page]");
-
-    controls.forEach(button => {
-        const pageValue = button.getAttribute("data-page");
-
-        if (pageValue === "prev") {
-            button.addEventListener("click", () => {
-                if (currentPage > 1) {
-                    currentPage -= 1;
-                    renderPatients(patients);
-                }
-            });
-            return;
-        }
-
-        if (pageValue === "next") {
-            button.addEventListener("click", () => {
-                if (currentPage < totalPages) {
-                    currentPage += 1;
-                    renderPatients(patients);
-                }
-            });
-            return;
-        }
-
-        const targetPage = Number(pageValue);
-
-        if (!Number.isNaN(targetPage)) {
-            button.addEventListener("click", () => {
-                currentPage = targetPage;
-                renderPatients(patients);
-            });
-        }
-    });
-
-    pagination.querySelector("[data-page='prev']")
-        ?.addEventListener("click", () => {
-            if (currentPage > 1) {
-                currentPage -= 1;
-                renderPatients(patients);
-            }
-        });
-
-    pagination.querySelector("[data-page='next']")
-        ?.addEventListener("click", () => {
-            if (currentPage < totalPages) {
-                currentPage += 1;
-                renderPatients(patients);
-            }
-        });
-
-}
-
-
-function formatDate(dateString) {
-
-    if (!dateString) {
-
-        return "—";
-
-    }
-
-
-    const [year, month, day] =
-        dateString.split("-");
-
-
-    return `${day}/${month}/${year}`;
-
-}
-
-
-function formatCurrentDate() {
-
-    const today = new Date();
-
-
-    return today.toLocaleDateString(
-        "pt-BR"
-    );
-
-}
-
-
-/*
-    Pesquisa por paciente.
-*/
-
+const pageSize = 10;
+const tableBody = document.getElementById("patientsTableBody");
 const searchInput = document.getElementById("searchPatient");
+const pagination = document.getElementById("pagination");
+const statusMessage = document.getElementById("loadStatus");
+const retryButton = document.getElementById("retryLoad");
 
-if (searchInput) {
-    searchInput.addEventListener(
-        "input",
-        function () {
-
-            currentPage = 1;
-
-            const search =
-                this.value
-                    .toLowerCase()
-                    .trim();
-
-
-            const filtered =
-                patients.filter(patient =>
-                    patient.patient_id
-                        .toLowerCase()
-                        .includes(search)
-                );
-
-
-            renderPatients(filtered);
-
-        }
-    );
+function filteredPatients() {
+    const search = searchInput.value.trim().toLowerCase();
+    return patients.filter(patient => patient.patient_id.toLowerCase().includes(search));
 }
-
-
+function renderPatients() {
+    const filtered = filteredPatients();
+    const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+    currentPage = Math.min(currentPage, totalPages);
+    tableBody.replaceChildren();
+    for (const patient of filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize)) {
+        const row = document.createElement("tr");
+        const codeCell = row.insertCell();
+        const code = document.createElement("strong");
+        code.textContent = patient.patient_id;
+        codeCell.append(code);
+        row.insertCell().textContent = SAIS.formatDate(patient.data_avaliacao);
+        const probability = row.insertCell();
+        probability.textContent = "Não calculada";
+        probability.className = "probability-empty";
+        const link = document.createElement("a");
+        link.href = "avaliacao.html?id=" + encodeURIComponent(patient.patient_id);
+        link.className = "btn-view";
+        link.textContent = "Ver avaliação";
+        link.setAttribute("aria-label", "Ver avaliação de " + patient.patient_id);
+        row.insertCell().append(link);
+        tableBody.append(row);
+    }
+    if (!filtered.length) {
+        const cell = tableBody.insertRow().insertCell();
+        cell.colSpan = 4;
+        cell.textContent = "Nenhum paciente encontrado.";
+    }
+    pagination.replaceChildren();
+    if (!filtered.length) return;
+    function button(label, target, disabled, active = false) {
+        const element = document.createElement("button");
+        element.type = "button"; element.textContent = label; element.disabled = disabled;
+        if (active) { element.className = "active"; element.setAttribute("aria-current", "page"); }
+        element.addEventListener("click", () => { currentPage = target; renderPatients(); });
+        pagination.append(element);
+    }
+    button("«", currentPage - 1, currentPage === 1);
+    for (let page = 1; page <= totalPages; page++) button(String(page), page, page === currentPage, page === currentPage);
+    button("»", currentPage + 1, currentPage === totalPages);
+}
+async function loadPatients() {
+    retryButton.hidden = true; statusMessage.textContent = "Carregando pacientes sintéticos…";
+    searchInput.disabled = true; tableBody.replaceChildren(); pagination.replaceChildren();
+    try {
+        patients = await SAIS.patients(); currentPage = 1; renderPatients();
+        statusMessage.textContent = patients.length + " pacientes sintéticos disponíveis.";
+    } catch (error) {
+        patients = []; statusMessage.textContent = error.message; retryButton.hidden = false;
+    } finally { searchInput.disabled = false; }
+    SAIS.healthStatus(document.getElementById("apiStatus"));
+}
+searchInput.addEventListener("input", () => { currentPage = 1; renderPatients(); });
+retryButton.addEventListener("click", loadPatients);
+document.getElementById("currentDate").textContent = new Date().toLocaleDateString("pt-BR", {timeZone: "America/Sao_Paulo"});
 loadPatients();

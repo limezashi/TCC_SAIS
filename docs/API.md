@@ -83,4 +83,25 @@ Os onze campos são obrigatórios. Aceitam números JSON inteiros e decimais fin
 - `500`: falha inesperada de inferência; mensagem pública genérica, detalhes no log.
 - Configuração ausente, hash incorreto ou ambiente incompatível: inicialização interrompida; não há fallback nem treinamento.
 
-`GET /health` retorna `status` e `versao_modelo`. A API não mantém cadastro de pacientes. A integração futura associará a probabilidade ao paciente na interface. Frontend e CORS não foram alterados nesta etapa.
+`GET /health` retorna `status` e `versao_modelo`. A API não mantém cadastro de pacientes.
+
+## Interface integrada
+
+Com a API iniciada pelo comando acima, abra http://127.0.0.1:8000/frontend/ . Frontend e endpoints são servidos pela mesma origem; não é necessário CORS. Não abra o HTML diretamente por file://.
+
+`GET /demo/patients` lê exclusivamente `data/dataset_interface.csv` e retorna os 30 pacientes sintéticos, identificador, data e onze parâmetros. Não retorna alvo ou probabilidade e não usa a base principal. Somente a pasta frontend é exposta como conteúdo estático.
+
+Pesquise ou pagine a listagem e clique em **Ver avaliação**. Em `avaliacao.html?id=DEMO001`, os parâmetros aparecem com unidades, somente leitura. Clique em **Calcular probabilidade** para enviar exatamente onze números a `POST /predict`. A tela exibe percentual com duas casas decimais e versão do modelo. Nenhuma classificação clínica é atribuída. A data do registro e o momento do cálculo são apresentados separadamente.
+
+Falhas de conexão, resposta inválida e indisponibilidade são exibidas na página; use **Tentar novamente**. A listagem não calcula probabilidades automaticamente. O sistema não grava avaliações ou pacientes.
+
+### Verificação no navegador
+
+Os testes `test_frontend_browser.py` usam Edge instalado no caminho padrão do Windows, em modo headless, e um servidor local temporário. Não modificam dados ou artefatos. Para habilitá-los no ambiente de testes:
+
+```powershell
+& .\.venv-api\Scripts\python.exe -m pip install playwright==1.64.0
+& .\.venv-api\Scripts\python.exe -B -m unittest discover -s tests -p 'test_*.py' -v
+```
+
+Sem Playwright ou Edge, os dois testes de navegador são explicitamente ignorados; os testes HTTP de integração continuam disponíveis. Nesta implementação, os vinte testes foram executados e aprovados, incluindo o navegador em desktop e em viewport de 390 × 844 pixels.
