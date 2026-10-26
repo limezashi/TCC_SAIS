@@ -1,0 +1,87 @@
+{
+  "aviso": "Avaliacao unica em dados sinteticos. O conjunto de teste ja havia sido consultado em notebooks anteriores; nao e validacao independente nem clinica.",
+  "executado_em": "2026-10-26T15:54:34",
+  "modelo": "rl_20261014T100407101829_b83773b9",
+  "n_teste": 1171,
+  "positivos_teste": 126,
+  "prevalencia_teste": 0.107600341588386,
+  "brier": 0.09137352528541089,
+  "brier_ic95_bootstrap": [
+    0.0889610187066238,
+    0.09369185433591291
+  ],
+  "brier_referencia_prevalencia_treino": 0.09602255365759921,
+  "brier_skill_score": 0.04841600431463211,
+  "roc_auc": 0.6892002734107997,
+  "roc_auc_ic95_bootstrap": [
+    0.6390639477481583,
+    0.7377544239386344
+  ],
+  "bootstrap": {
+    "n": 5000,
+    "semente": 20261026,
+    "estratificado": true
+  },
+  "calibracao_decis": [
+    {
+      "n": 118,
+      "prob_media": 0.03865693902732407,
+      "taxa_observada": 0.0423728813559322
+    },
+    {
+      "n": 117,
+      "prob_media": 0.05806822944808579,
+      "taxa_observada": 0.017094017094017096
+    },
+    {
+      "n": 117,
+      "prob_media": 0.0697282810028304,
+      "taxa_observada": 0.07692307692307693
+    },
+    {
+      "n": 117,
+      "prob_media": 0.08072476706930967,
+      "taxa_observada": 0.07692307692307693
+    },
+    {
+      "n": 117,
+      "prob_media": 0.0934740296060526,
+      "taxa_observada": 0.1111111111111111
+    },
+    {
+      "n": 117,
+      "prob_media": 0.1047994697634044,
+      "taxa_observada": 0.09401709401709402
+    },
+    {
+      "n": 117,
+      "prob_media": 0.11791824062880574,
+      "taxa_observada": 0.05128205128205128
+    },
+    {
+      "n": 117,
+      "prob_media": 0.136060705090575,
+      "taxa_observada": 0.1111111111111111
+    },
+    {
+      "n": 117,
+      "prob_media": 0.1622674865014878,
+      "taxa_observada": 0.23931623931623933
+    },
+    {
+      "n": 117,
+      "prob_media": 0.23586786799074266,
+      "taxa_observada": 0.2564102564102564
+    }
+  ],
+  "ambiente": {
+    "python": "3.14.8",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1",
+    "git_commit": "a3f25fb4c5727efe99129d98fdb89d959ae4579a",
+    "sha256_script": "d9167fb9501f12d53c58fbcd6b6a9c781bed5c0737d9b0671848af98bc9329fa",
+    "sha256_dataset": "0ffe90627e19a05c4d25ad747fe19d5766e7a1080dff512e98679d5330d196ca",
+    "sha256_modelo": "87130c15c8eb66d1242c6fa731cc5b2da081eb79e3547eeead4a7d936cdd8ccc"
+  }
+}
