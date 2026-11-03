@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAIS — Avaliação sintética</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261103-16">
 </head>
 <body>
     <header class="header"><div class="header-content"><div class="logo"><h1>SAIS</h1><p>Sistema de Apoio à Identificação de Risco</p></div><div class="header-info"><span>Demonstração sintética</span></div></div></header>
-    <main class="container">
+    <main class="container evaluation-container">
         <section class="page-title"><h2>Avaliação do paciente sintético</h2><p id="patientIdentity">Carregando registro…</p></section>
         <p class="academic-notice">Demonstração acadêmica com pacientes sintéticos. As probabilidades não possuem validação clínica e não representam diagnóstico ou recomendação médica.</p>
         <p id="apiStatus" role="status" aria-live="polite"></p>
@@ -17,7 +17,10 @@
         <section id="patientDetails" hidden>
             <h3>Parâmetros do registro — somente leitura</h3>
             <dl id="parameters" class="parameters-grid"></dl>
-            <button id="calculate" class="btn-view" type="button" disabled>Calcular probabilidade</button>
+            <div class="evaluation-actions">
+                <button id="calculate" class="btn-view" type="button" disabled>Calcular probabilidade</button>
+                <a href="index.html" class="btn-view">Voltar à listagem</a>
+            </div>
         </section>
         <section id="predictionResult" class="prediction-result" aria-live="polite" hidden>
             <h3>Probabilidade experimental estimada</h3>
@@ -25,10 +28,9 @@
             <p>Versão do modelo: <span id="modelVersion" class="model-version"></span></p>
             <p id="calculatedAt"></p>
         </section>
-        <p class="back-link"><a href="index.html" class="btn-view">Voltar à listagem</a></p>
     </main>
     <footer class="footer"><p>SAIS — demonstração acadêmica com dados sintéticos.</p></footer>
-    <script src="js/api.js"></script>
-    <script src="js/avaliacao.js"></script>
+    <script src="js/api.js?v=20261103-2"></script>
+    <script src="js/avaliacao.js?v=20261103-3"></script>
 </body>
 </html>

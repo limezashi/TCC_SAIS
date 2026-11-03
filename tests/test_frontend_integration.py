@@ -36,6 +36,9 @@ class TestFrontendIntegration(unittest.TestCase):
 
     def test_static_files_and_no_internal_directories(self):
         with TestClient(create_app(ARTIFACT)) as client:
+            root = client.get('/')
+            self.assertEqual(root.status_code, 200)
+            self.assertIn('<base href="/frontend/">', root.text)
             for path in ['/frontend/', '/frontend/index.html', '/frontend/avaliacao.html', '/frontend/js/api.js', '/frontend/js/index.js', '/frontend/js/avaliacao.js', '/frontend/css/style.css']:
                 self.assertEqual(client.get(path).status_code, 200, path)
             for path in ['/data/dataset.csv', '/artifacts/modelo.joblib', '/frontend/data/dataset.csv', '/frontend/../data/dataset.csv', '/frontend/%2e%2e/data/dataset.csv']:

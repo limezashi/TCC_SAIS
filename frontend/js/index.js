@@ -1,15 +1,21 @@
 let patients = [];
 let currentPage = 1;
+let appliedSearch = "";
+let appliedDate = "";
 const pageSize = 10;
 const tableBody = document.getElementById("patientsTableBody");
 const searchInput = document.getElementById("searchPatient");
+const dateFilter = document.getElementById("filterDate");
+const filterForm = document.getElementById("patientFilters");
 const pagination = document.getElementById("pagination");
 const statusMessage = document.getElementById("loadStatus");
 const retryButton = document.getElementById("retryLoad");
 
 function filteredPatients() {
-    const search = searchInput.value.trim().toLowerCase();
-    return patients.filter(patient => patient.patient_id.toLowerCase().includes(search));
+    return patients.filter(patient =>
+        patient.patient_id.toLowerCase().includes(appliedSearch) &&
+        (!appliedDate || patient.data_avaliacao === appliedDate)
+    );
 }
 function renderPatients() {
     const filtered = filteredPatients();
@@ -24,13 +30,21 @@ function renderPatients() {
         codeCell.append(code);
         row.insertCell().textContent = SAIS.formatDate(patient.data_avaliacao);
         const probability = row.insertCell();
-        probability.textContent = "Não calculada";
-        probability.className = "probability-empty";
+        const savedPrediction = SAIS.getSavedPrediction(patient.patient_id);
+        if (savedPrediction) {
+            probability.textContent = savedPrediction.probabilidade.toLocaleString("pt-BR", {
+                style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2
+            });
+            probability.className = "probability-calculated";
+        } else {
+            probability.textContent = "Não calculada";
+            probability.className = "probability-empty";
+        }
         const link = document.createElement("a");
         link.href = "avaliacao.html?id=" + encodeURIComponent(patient.patient_id);
         link.className = "btn-view";
-        link.textContent = "Ver avaliação";
-        link.setAttribute("aria-label", "Ver avaliação de " + patient.patient_id);
+        link.textContent = savedPrediction ? "Ver resultado" : "Realizar avaliação";
+        link.setAttribute("aria-label", `${link.textContent} de ${patient.patient_id}`);
         row.insertCell().append(link);
         tableBody.append(row);
     }
@@ -54,16 +68,26 @@ function renderPatients() {
 }
 async function loadPatients() {
     retryButton.hidden = true; statusMessage.textContent = "Carregando pacientes sintéticos…";
-    searchInput.disabled = true; tableBody.replaceChildren(); pagination.replaceChildren();
+    searchInput.disabled = true; dateFilter.disabled = true;
+    filterForm.querySelector("button").disabled = true;
+    tableBody.replaceChildren(); pagination.replaceChildren();
     try {
         patients = await SAIS.patients(); currentPage = 1; renderPatients();
-        statusMessage.textContent = patients.length + " pacientes sintéticos disponíveis.";
+        statusMessage.textContent = "";
     } catch (error) {
         patients = []; statusMessage.textContent = error.message; retryButton.hidden = false;
-    } finally { searchInput.disabled = false; }
+    } finally {
+        searchInput.disabled = false; dateFilter.disabled = false;
+        filterForm.querySelector("button").disabled = false;
+    }
     SAIS.healthStatus(document.getElementById("apiStatus"));
 }
-searchInput.addEventListener("input", () => { currentPage = 1; renderPatients(); });
+filterForm.addEventListener("submit", event => {
+    event.preventDefault();
+    appliedSearch = searchInput.value.trim().toLowerCase();
+    appliedDate = dateFilter.value;
+    currentPage = 1;
+    renderPatients();
+});
 retryButton.addEventListener("click", loadPatients);
-document.getElementById("currentDate").textContent = new Date().toLocaleDateString("pt-BR", {timeZone: "America/Sao_Paulo"});
 loadPatients();

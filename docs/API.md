@@ -26,14 +26,21 @@ Somente os testes da API:
 
 ## Inicialização
 
-Configure explicitamente a pasta de artefato. Não há seleção automática do modelo mais recente. A pasta é uma configuração local do operador, não um parâmetro recebido dos clientes.
+Na raiz do projeto, inicie com um comando:
 
 ```powershell
-$env:TCC_MODEL_DIR = (Resolve-Path 'artifacts\rl_20261014T100407101829_b83773b9').Path
-& .\.venv-api\Scripts\python.exe -B -m uvicorn api.main:app --host 127.0.0.1 --port 8000 --workers 1
+.\run-api.bat
 ```
 
-No ambiente temporário já utilizado no projeto, substitua `.\.venv-api\Scripts\python.exe` por `"$env:TEMP\tcc_dataset_audit_20261013\Scripts\python.exe"`.
+O script configura explicitamente a pasta do artefato e inicia o servidor usando o ambiente `.venv-api`, aceitando conexões da rede local. Mantenha o terminal aberto; pare com `Ctrl+C`. Se o ambiente ainda não existir, crie-o e instale as dependências seguindo a seção Ambiente acima. O artefato usado é fixo no script, não há seleção automática do modelo mais recente.
+
+Para testar em outro dispositivo na mesma rede Wi-Fi:
+
+1. Inicie `.\run-api.bat` no computador que hospeda a API.
+2. No PowerShell desse computador, execute `ipconfig` e anote o endereço IPv4 da conexão Wi-Fi.
+3. No outro dispositivo, abra `http://<IPv4-do-computador>:8000/` (por exemplo, `http://192.168.1.25:8000/`).
+
+Se o Firewall do Windows perguntar, permita o acesso em redes privadas. Não compartilhe o endereço `127.0.0.1`: nele, cada dispositivo aponta para si mesmo. Este servidor de demonstração não tem autenticação; use apenas numa rede confiável e não exponha a porta diretamente à internet.
 
 O lifespan carrega uma vez por processo, com as verificações existentes de origem, integridade, ambiente, pipeline e variáveis. O modelo é mantido em memória até o encerramento. Falha de carregamento interrompe a inicialização. Arquivos joblib devem vir somente da origem confiável do próprio projeto; hashes não autenticam terceiros.
 
@@ -87,13 +94,13 @@ Os onze campos são obrigatórios. Aceitam números JSON inteiros e decimais fin
 
 ## Interface integrada
 
-Com a API iniciada pelo comando acima, abra http://127.0.0.1:8000/frontend/ . Frontend e endpoints são servidos pela mesma origem; não é necessário CORS. Não abra o HTML diretamente por file://.
+Com a API iniciada pelo comando acima, abra http://127.0.0.1:8000/ . A listagem também continua disponível em http://127.0.0.1:8000/frontend/ . Frontend e endpoints são servidos pela mesma origem; não é necessário CORS. Não abra o HTML diretamente por file://.
 
 `GET /demo/patients` lê exclusivamente `data/dataset_interface.csv` e retorna os 30 pacientes sintéticos, identificador, data e onze parâmetros. Não retorna alvo ou probabilidade e não usa a base principal. Somente a pasta frontend é exposta como conteúdo estático.
 
 Pesquise ou pagine a listagem e clique em **Ver avaliação**. Em `avaliacao.html?id=DEMO001`, os parâmetros aparecem com unidades, somente leitura. Clique em **Calcular probabilidade** para enviar exatamente onze números a `POST /predict`. A tela exibe percentual com duas casas decimais e versão do modelo. Nenhuma classificação clínica é atribuída. A data do registro e o momento do cálculo são apresentados separadamente.
 
-Falhas de conexão, resposta inválida e indisponibilidade são exibidas na página; use **Tentar novamente**. A listagem não calcula probabilidades automaticamente. O sistema não grava avaliações ou pacientes.
+Falhas de conexão, resposta inválida e indisponibilidade são exibidas na página; use **Tentar novamente**. A listagem não calcula probabilidades automaticamente. Após o cálculo, a probabilidade e a versão do modelo são guardadas no armazenamento local do navegador para aparecerem na listagem ao voltar. Esses dados não são enviados para armazenamento no servidor e podem ser apagados limpando os dados do site no navegador. O sistema não grava pacientes nem histórico de avaliações na API.
 
 ### Verificação no navegador
 

@@ -6,7 +6,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from src.modelo_persistido import carregar_modelo, prever_probabilidade, sha256
@@ -79,7 +79,13 @@ def create_app(pasta_artefato=None):
             LOGGER.exception("Falha ao carregar pacientes demonstrativos")
             raise HTTPException(status_code=503, detail="Pacientes sintéticos indisponíveis.") from None
 
-    app.mount("/frontend", StaticFiles(directory=Path(__file__).resolve().parents[1] / "frontend", html=True), name="frontend")
+    frontend_dir = Path(__file__).resolve().parents[1] / "frontend"
+
+    @app.get("/", include_in_schema=False)
+    def home():
+        return FileResponse(frontend_dir / "index.html")
+
+    app.mount("/frontend", StaticFiles(directory=frontend_dir, html=True), name="frontend")
     return app
 
 

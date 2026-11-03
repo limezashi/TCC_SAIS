@@ -40,17 +40,50 @@ window.SAIS = (() => {
         if (typeof result.probabilidade !== "number" || !Number.isFinite(result.probabilidade) || result.probabilidade < 0 || result.probabilidade > 1 || typeof result.versao_modelo !== "string") throw new Error("A API retornou um resultado inválido.");
         return result;
     }
+    function savedPredictions() {
+        const stored = localStorage.getItem("sais-predictions");
+        if (!stored) return {};
+        try {
+            const parsed = JSON.parse(stored);
+            return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+        } catch (error) {
+            if (error instanceof SyntaxError) return {};
+            throw error;
+        }
+    }
+    function getSavedPrediction(patientId) {
+        const result = savedPredictions()[patientId];
+        if (!result || typeof result.probabilidade !== "number" ||
+            !Number.isFinite(result.probabilidade) || result.probabilidade < 0 ||
+            result.probabilidade > 1 || typeof result.versao_modelo !== "string" ||
+            typeof result.calculado_em !== "string" || !Number.isFinite(Date.parse(result.calculado_em))) return null;
+        return result;
+    }
+    function savePrediction(patientId, result) {
+        if (typeof patientId !== "string" || !patientId.startsWith("DEMO") ||
+            typeof result.probabilidade !== "number" || !Number.isFinite(result.probabilidade) ||
+            result.probabilidade < 0 || result.probabilidade > 1 ||
+            typeof result.versao_modelo !== "string") {
+            throw new Error("Não foi possível guardar o resultado deste paciente.");
+        }
+        const predictions = savedPredictions();
+        predictions[patientId] = {
+            probabilidade: result.probabilidade,
+            versao_modelo: result.versao_modelo,
+            calculado_em: new Date().toISOString()
+        };
+        localStorage.setItem("sais-predictions", JSON.stringify(predictions));
+    }
     async function healthStatus(element) {
-        element.textContent = "Verificando disponibilidade da API…";
+        element.textContent = "";
         try {
             const health = await request("/health");
             if (health.status !== "ok") throw new Error("Modelo indisponível.");
-            element.textContent = "API disponível para cálculo experimental.";
         } catch (error) { element.textContent = error.message; }
     }
     function formatDate(value) {
         const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
         return match ? `${match[3]}/${match[2]}/${match[1]}` : "—";
     }
-    return {features, patients, predict, healthStatus, formatDate};
+    return {features, patients, predict, getSavedPrediction, savePrediction, healthStatus, formatDate};
 })();
