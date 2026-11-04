@@ -1,0 +1,6 @@
+﻿preditor,auc,ic95%,diferenca_para_o_modelo,ic95%_diferenca,aviso
+SIRS parcial (sem frequência respiratória e PaCO2),0.5871269081795397,"[0.5405564099643047, 0.6352702779676463]",0.10207336523125998,"[0.04585450368345101, 0.15438150299992406]","exploratório, base sintética, teste não independente, sem validação clínica"
+Lactato contínuo,0.6026999316473001,"[0.5520063416116048, 0.6501253132832079]",0.08650034176349963,"[0.03126338573706989, 0.1459760195944408]","exploratório, base sintética, teste não independente, sem validação clínica"
+Lactato > 2 (binária),0.5512987012987013,"[0.5076479076479076, 0.5948125047467153]",0.13790157211209841,"[0.0815929027113239, 0.19182454241664765]","exploratório, base sintética, teste não independente, sem validação clínica"
+PaO2/FiO2 contínuo (invertido),0.6172172856383382,"[0.560988455988456, 0.6712780056201108]",0.07198298777246148,"[0.0258787119313434, 0.11622939925571514]","exploratório, base sintética, teste não independente, sem validação clínica"
+Modelo (probabilidade positiva),0.6892002734107997,"[0.6389811650337966, 0.7370427963849018]",0.0,"[0.0, 0.0]","exploratório, base sintética, teste não independente, sem validação clínica"

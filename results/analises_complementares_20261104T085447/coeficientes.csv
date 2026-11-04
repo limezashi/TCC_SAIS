@@ -1,0 +1,12 @@
+﻿variavel,coeficiente_padronizado,odds_ratio_por_1_DP,sinal_esperado,sinal_coincide?,aviso
+leucocitos,-0.15630034878984153,0.8553022627894282,+,não,"exploratório, base sintética, teste não independente, sem validação clínica"
+neutrofilos,0.21628074041527134,1.2414508555113781,+,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+plaquetas,-0.2527562388395981,0.7766571776061685,−,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+temperatura,-0.005414431673356563,0.9946001999426104,+,não,"exploratório, base sintética, teste não independente, sem validação clínica"
+fc,0.1359133335731862,1.1455826057414025,+,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+pas,-0.12210698645485277,0.8850536746822307,−,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+lactato,0.17692133513499508,1.1935371999914262,+,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+creatinina,0.03566285399756247,1.0363064010267564,+,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+pao2_fio2,-0.27061851259921593,0.7629074804899262,−,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+rnl,0.14793074394034303,1.159432595849331,+,sim,"exploratório, base sintética, teste não independente, sem validação clínica"
+bastonetes,0.07081555174559649,1.0733832239464014,+,sim,"exploratório, base sintética, teste não independente, sem validação clínica"

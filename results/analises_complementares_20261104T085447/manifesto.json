@@ -1,0 +1,101 @@
+{
+  "aviso": "exploratório, base sintética, teste não independente, sem validação clínica",
+  "data_hora": "2026-11-04T09:06:33.329096-03:00",
+  "ambiente": ".venv-treino",
+  "python": "3.14.8",
+  "bibliotecas": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "matplotlib": "3.11.2",
+  "modelo": {
+    "diretorio": "C:\\Users\\Livia\\Documents\\TCC_SAIS\\artifacts\\rl_20261014T100407101829_b83773b9",
+    "arquivo": "modelo.joblib",
+    "sha256": "87130c15c8eb66d1242c6fa731cc5b2da081eb79e3547eeead4a7d936cdd8ccc",
+    "carregado_com_origem_confiavel": true
+  },
+  "dataset_sha256": "0ffe90627e19a05c4d25ad747fe19d5766e7a1080dff512e98679d5330d196ca",
+  "sementes": {
+    "divisao": 42,
+    "bootstrap": 42
+  },
+  "parametros_fixos": {
+    "test_size": 0.2,
+    "stratify": "sepsis",
+    "train_test_split_random_state": 42,
+    "bootstrap_reamostragens": 1000,
+    "bootstrap_intervalo_percentil": [
+      2.5,
+      97.5
+    ],
+    "grades": {
+      "lactato": [
+        0.5,
+        8.0,
+        40
+      ],
+      "pas": [
+        70.0,
+        180.0,
+        40
+      ],
+      "pao2_fio2": [
+        80.0,
+        450.0,
+        40
+      ],
+      "fc": [
+        50.0,
+        150.0,
+        40
+      ],
+      "creatinina": [
+        0.4,
+        4.0,
+        40
+      ],
+      "plaquetas": [
+        20.0,
+        450.0,
+        40
+      ],
+      "temperatura": [
+        34.0,
+        40.5,
+        40
+      ],
+      "leucocitos": [
+        2.0,
+        30.0,
+        40
+      ],
+      "bastonetes": [
+        0.0,
+        20.0,
+        40
+      ]
+    },
+    "extremos": [
+      {
+        "variavel": "lactato",
+        "valor": 50
+      },
+      {
+        "variavel": "pas",
+        "valor": -10
+      },
+      {
+        "variavel": "pao2_fio2",
+        "valor": 0
+      }
+    ]
+  },
+  "split": {
+    "treino": 4684,
+    "teste": 1171,
+    "positivos_teste": 126
+  }
+}

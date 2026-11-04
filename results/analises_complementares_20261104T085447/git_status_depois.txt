@@ -1,0 +1,2 @@
+﻿warning: could not open directory '.pytest_cache/': Permission denied
+?? results/analises_complementares_20261104T085447/

@@ -1,0 +1,12 @@
+﻿variavel,vif,vif_maior_5,aviso
+leucocitos,10.890344555997219,True,"exploratório, base sintética, teste não independente, sem validação clínica"
+neutrofilos,11.851690223832694,True,"exploratório, base sintética, teste não independente, sem validação clínica"
+plaquetas,1.0216763006858323,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+temperatura,1.003430712038787,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+fc,1.0203362483997975,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+pas,1.0041362313623698,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+lactato,1.0319883683352649,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+creatinina,1.0044898324065061,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+pao2_fio2,1.0247713743840832,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+rnl,1.8705280320015478,False,"exploratório, base sintética, teste não independente, sem validação clínica"
+bastonetes,1.008549677165384,False,"exploratório, base sintética, teste não independente, sem validação clínica"

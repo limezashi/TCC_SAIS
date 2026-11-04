@@ -1,0 +1,84 @@
+{
+  "aviso": "exploratório, base sintética, teste não independente, sem validação clínica",
+  "n_registros": 5855,
+  "neutrofilos_mais_linfocitos_maior_que_leucocitos": {
+    "quantidade": 1167,
+    "percentual": 19.931682322801024
+  },
+  "razao_(neutrofilos_mais_linfocitos)/leucocitos": {
+    "count": 5855,
+    "mean": 0.914237498908182,
+    "std": 0.11006470177839106,
+    "min": 0.49533958610391726,
+    "q25": 0.8447241671456835,
+    "mediana": 0.9156763812464386,
+    "q75": 0.9837665933333118,
+    "max": 1.4415104719242404
+  },
+  "neutrofilos_maior_que_leucocitos": 0,
+  "limites_tabela_1": {
+    "pas": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        70,
+        220
+      ]
+    },
+    "fc": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        40,
+        180
+      ]
+    },
+    "temperatura": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        33,
+        41
+      ]
+    },
+    "leucocitos": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        2,
+        40
+      ]
+    },
+    "pao2_fio2": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        60,
+        500
+      ]
+    },
+    "creatinina": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        0.3,
+        5
+      ]
+    },
+    "lactato": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        0.4,
+        10
+      ]
+    },
+    "plaquetas": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        10,
+        600
+      ]
+    },
+    "bastonetes": {
+      "fora_dos_limites": 0,
+      "limites_inclusivos": [
+        0,
+        20
+      ]
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "aviso": "exploratório, base sintética, teste não independente, sem validação clínica",
+  "bootstrap": {
+    "metodo": "percentílico estratificado por classe",
+    "reamostragens": 1000,
+    "semente": 42
+  },
+  "prevalencia_treino": 0.10781383432963279,
+  "auc_modelo": 0.6892002734107997,
+  "brier_modelo": {
+    "valor": 0.09137352528541089,
+    "ic95%": [
+      0.08900124032868473,
+      0.09366763641356766
+    ]
+  },
+  "brier_referencia_prevalencia_treino": {
+    "valor": 0.09602255365759921,
+    "ic95%": [
+      0.09602255365759922,
+      0.09602255365759922
+    ]
+  },
+  "resultados": [
+    {
+      "preditor": "SIRS parcial (sem frequência respiratória e PaCO2)",
+      "auc": 0.5871269081795397,
+      "ic95%": [
+        0.5405564099643047,
+        0.6352702779676463
+      ],
+      "diferenca_para_o_modelo": 0.10207336523125998,
+      "ic95%_diferenca": [
+        0.04585450368345101,
+        0.15438150299992406
+      ],
+      "aviso": "exploratório, base sintética, teste não independente, sem validação clínica"
+    },
+    {
+      "preditor": "Lactato contínuo",
+      "auc": 0.6026999316473001,
+      "ic95%": [
+        0.5520063416116048,
+        0.6501253132832079
+      ],
+      "diferenca_para_o_modelo": 0.08650034176349963,
+      "ic95%_diferenca": [
+        0.03126338573706989,
+        0.1459760195944408
+      ],
+      "aviso": "exploratório, base sintética, teste não independente, sem validação clínica"
+    },
+    {
+      "preditor": "Lactato > 2 (binária)",
+      "auc": 0.5512987012987013,
+      "ic95%": [
+        0.5076479076479076,
+        0.5948125047467153
+      ],
+      "diferenca_para_o_modelo": 0.13790157211209841,
+      "ic95%_diferenca": [
+        0.0815929027113239,
+        0.19182454241664765
+      ],
+      "aviso": "exploratório, base sintética, teste não independente, sem validação clínica"
+    },
+    {
+      "preditor": "PaO2/FiO2 contínuo (invertido)",
+      "auc": 0.6172172856383382,
+      "ic95%": [
+        0.560988455988456,
+        0.6712780056201108
+      ],
+      "diferenca_para_o_modelo": 0.07198298777246148,
+      "ic95%_diferenca": [
+        0.0258787119313434,
+        0.11622939925571514
+      ],
+      "aviso": "exploratório, base sintética, teste não independente, sem validação clínica"
+    },
+    {
+      "preditor": "Modelo (probabilidade positiva)",
+      "auc": 0.6892002734107997,
+      "ic95%": [
+        0.6389811650337966,
+        0.7370427963849018
+      ],
+      "diferenca_para_o_modelo": 0.0,
+      "ic95%_diferenca": [
+        0.0,
+        0.0
+      ],
+      "aviso": "exploratório, base sintética, teste não independente, sem validação clínica"
+    }
+  ],
+  "conferencias_tolerancia_0_001": {
+    "auc_0_689": true,
+    "brier_0_0914": true
+  }
+}
