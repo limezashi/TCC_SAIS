@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "producer": "TCC_SAIS/rl-experimental",
+  "purpose": "Demonstracao academica em dados sinteticos; sem validacao clinica",
+  "created_at": "2026-10-14T10:04:07.138617-03:00",
+  "timezone": "America/Sao_Paulo",
+  "git_commit": "f253978822a1905b64835c67a9a4d9c79562962f",
+  "dataset": {
+    "path": "C:\\Users\\Livia\\Documents\\TCC_SAIS\\data\\dataset.csv",
+    "sha256": "0ffe90627e19a05c4d25ad747fe19d5766e7a1080dff512e98679d5330d196ca"
+  },
+  "training": {
+    "n": 4684,
+    "positive": 505,
+    "ids_sha256": "9f7f229054f23fe8fef3a8a01f507ed99d43e00a8f119f0b5fb978c3e80566cc",
+    "ids_encoding": "JSON compacto de inteiros em ordem de treinamento, UTF-8",
+    "test_size": 0.2,
+    "stratify": "sepsis",
+    "random_state": 42
+  },
+  "features": [
+    "leucocitos",
+    "neutrofilos",
+    "plaquetas",
+    "temperatura",
+    "fc",
+    "pas",
+    "lactato",
+    "creatinina",
+    "pao2_fio2",
+    "rnl",
+    "bastonetes"
+  ],
+  "target": "sepsis",
+  "classes": [
+    0,
+    1
+  ],
+  "positive_class": 1,
+  "configuration": {
+    "steps": [
+      "scaler",
+      "regressao_logistica"
+    ],
+    "scaler": {
+      "copy": true,
+      "with_mean": true,
+      "with_std": true
+    },
+    "regressao_logistica": {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1000,
+      "n_jobs": null,
+      "penalty": "deprecated",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    }
+  },
+  "random_state": 42,
+  "python": "3.14.8",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "source_sha256": {
+    "modelo_rl.py": "fd9aced5820756744f2a64c27e3e02df747a50cac02be7950d05cdcf7d567bd2",
+    "variables.py": "9c1bcff4723723b91ecaa6ed119decf40cd2849501bdd0fef8abddb2b6da9e57",
+    "preparacao_dados.py": "539f91de8c361a40ec81139989ee356d2eb6d5b3e92290e20b65f469c57739ee",
+    "modelo_persistido.py": "726f9dd4a6a54059ae984dd5514169734ee89c82aa2a9d64545946f56a163542"
+  },
+  "artifact": {
+    "filename": "modelo.joblib",
+    "sha256": "87130c15c8eb66d1242c6fa731cc5b2da081eb79e3547eeead4a7d936cdd8ccc"
+  }
+}

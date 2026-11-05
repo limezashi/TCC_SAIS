@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/frontend/">
+
+    <title>SAIS - Pacientes</title>
+
+    <link rel="stylesheet" href="css/style.css?v=20261103-11">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="logo">
+                <h1>SAIS</h1>
+                <p>Sistema de Apoio à Identificação de Risco</p>
+            </div>
+
+            <div class="header-info">
+                <span>UTI</span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="page-title">
+
+            <h2>Pacientes sintéticos</h2>
+
+            <p>
+                Selecione um paciente sintético para calcular a probabilidade experimental estimada.
+            </p>
+
+        </section>
+
+
+        <p class="academic-notice">Demonstração acadêmica com pacientes sintéticos. As probabilidades não possuem validação clínica e não representam diagnóstico ou recomendação médica.</p>
+        <p id="apiStatus" role="status" aria-live="polite"></p>
+        <div id="loadStatus" class="status-message" role="status" aria-live="polite"></div>
+        <button id="retryLoad" class="btn-view" type="button" hidden>Tentar novamente</button>
+        <!-- <section class="summary">
+
+            <div class="summary-card">
+
+                <span>Total de pacientes</span>
+
+                <strong id="totalPatients">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Avaliações realizadas</span>
+
+                <strong id="totalEvaluations">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Probabilidade média</span>
+
+                <strong id="averageProbability">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>Última avaliação</span>
+
+                <strong id="lastEvaluation">
+                    —
+                </strong>
+
+            </div>
+
+        </section> -->
+                <form id="patientFilters" class="patient-filters">
+                    <input
+                        type="search"
+                        id="searchPatient"
+                        aria-label="Pesquisar paciente"
+                        placeholder="Pesquisar paciente..."
+                    >
+                    <input type="date" id="filterDate" aria-label="Filtrar por data">
+                    <button class="btn-view" type="submit">Pesquisar</button>
+                    <button class="btn-view" id="clearFilters" type="button">Limpar filtros</button>
+                </form>
+
+        <section class="patients-container">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Paciente</th>
+
+                            <th>Data do registro</th>
+
+                            <th>Probabilidade estimada</th>
+
+                            <th>Ação</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="patientsTableBody">
+
+                        <!--
+                            Os pacientes serão carregados
+                            pelo dataset através do JavaScript.
+                        -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <div class="pagination-wrapper">
+            <div id="pagination" class="pagination"></div>
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+        <p>
+            Direitos autorais © 2026. Todos os direitos reservados.
+        </p>
+    </footer>
+
+
+    <script src="js/api.js?v=20261105-1"></script>
+    <script src="js/index.js?v=20261105-2"></script>
+
+</body>
+
+</html>

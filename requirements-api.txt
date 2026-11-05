@@ -1,0 +1,13 @@
+# Python 3.14.8: compatibilidade exata com metadados do artefato selecionado.
+numpy==2.5.4
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+tzdata==2026.5
+fastapi==0.143.1
+pydantic==2.14.1
+uvicorn==0.54.0
+starlette==1.8.0
+psycopg[binary]==3.3.8
+python-dotenv==1.2.4

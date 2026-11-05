@@ -1,0 +1,21 @@
+﻿# Credenciais e configuracoes locais
+.env
+.env.*
+!.env.example
+
+# Ambientes Python
+.venv/
+.venv-api/
+.venv-treino/
+venv/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# Testes
+.pytest_cache/
+
+# Configuracoes locais de editores
+.vscode/
+.idea/

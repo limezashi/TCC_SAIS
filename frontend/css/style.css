@@ -1,0 +1,568 @@
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fa;
+    color: #263238;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+    background-color: #000a35;
+    border-bottom: 1px solid #e1e6eb;
+    width: 100%;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 12px 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Logo */
+
+.logo h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.logo p {
+    margin-top: 2px;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+
+/* Informações do header */
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.header-info span:first-child {
+    font-weight: 600;
+}
+
+
+/* ========================================
+   CONTAINER PRINCIPAL
+======================================== */
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 40px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ========================================
+   TÍTULO DA PÁGINA
+======================================== */
+
+.page-title {
+    margin-bottom: 14px;
+}
+
+.page-title h2 {
+    font-size: 23px;
+    font-weight: 600;
+    color: #263238;
+}
+
+.page-title p {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #7a8793;
+}
+
+
+/* ========================================
+   CARDS DE RESUMO
+======================================== */
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.summary-card {
+    background-color: #ffffff;
+    border: 1px solid #e4e9ee;
+    border-radius: 8px;
+    padding: 22px 24px;
+
+    min-height: 105px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.summary-card span {
+    font-size: 13px;
+    color: #77838f;
+}
+
+.summary-card strong {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #263238;
+}
+
+
+/* ========================================
+   ÁREA DA LISTA
+======================================== */
+
+.patients-container {
+    background-color: #ffffff;
+    border: 1px solid #e4e9ee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+/* ========================================
+   CABEÇALHO DA LISTA
+======================================== */
+
+.patients-header {
+    padding: 22px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e8edf1;
+}
+
+.patients-header h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #263238;
+}
+
+.patients-header p {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #89949e;
+}
+
+
+/* ========================================
+   CAMPO DE PESQUISA
+======================================== */
+
+.search-box {
+    position: relative;
+}
+
+.patient-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.patient-filters input {
+    width: 260px;
+    height: 36px;
+    padding: 0 14px;
+    border: 1px solid #09489c;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #09489c;
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.patient-filters input::placeholder {
+    color: #09489c;
+}
+
+.patient-filters input:focus {
+    box-shadow:
+        0 0 0 3px rgba(9, 72, 156, 0.08);
+}
+
+.patient-filters button {
+    min-width: 100px;
+    height: 36px;
+    background-color: #09489c;
+    color: #ffffff;
+}
+
+.patient-filters button:hover {
+    background-color: #073a7d;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   TABELA
+======================================== */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f8fafb;
+}
+
+th {
+    padding: 15px 24px;
+
+    text-align: left;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #263238;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+
+    border-bottom: 1px solid #e4e9ee;
+}
+
+td {
+    padding: 9px 18px;
+
+    font-size: 13px;
+    color: #56636e;
+
+    border-bottom: 1px solid #edf0f3;
+}
+
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background-color: #fafcfd;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Nome/ID do paciente */
+
+td strong {
+    font-weight: 600;
+    color: #263238;
+}
+
+
+/* ========================================
+   PROBABILIDADE
+======================================== */
+
+.probability-empty {
+    color: #9aa5ae;
+    font-size: 14px;
+}
+
+.probability-calculated {
+    color: #263238;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   BOTÃO "VER AVALIAÇÃO"
+======================================== */
+
+.btn-view {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 125px;
+    height: 34px;
+
+    padding: 0 15px;
+
+    border: 1px solid #09489c;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+    color: #09489c;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.btn-view:hover {
+    background-color: #09489c;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   RODAPÉ
+======================================== */
+
+.footer {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+
+    padding: 12px 40px;
+
+    text-align: center;
+
+    font-size: 11px;
+    color: #9aa5ae;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 1000px) {
+
+    .summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header-content {
+        padding: 20px 25px;
+    }
+
+    .container {
+        padding: 30px 25px 50px;
+    }
+
+    .footer {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .header-info {
+        gap: 18px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .patients-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .patient-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .patient-filters input {
+        width: 100%;
+    }
+
+    .container {
+        padding: 25px 18px 40px;
+    }
+
+    th,
+    td {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+}
+
+/* ========================================
+   PAGINAÇÃO
+======================================== */
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding-top: 18px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination a,
+.pagination button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 12px;
+
+    border: 1px solid #dfe6ee;
+    border-radius: 6px;
+
+    background-color: #ffffff;
+    color: #52606d;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.pagination a:hover,
+.pagination button:hover {
+    background-color: #f4f8ff;
+    border-color: #b8c8e5;
+    color: #09489c;
+}
+
+.pagination .active {
+    background-color: #09489c;
+    border-color: #09489c;
+    color: #ffffff;
+}
+
+.pagination .prev,
+.pagination .next {
+    min-width: 84px;
+}
+
+.pagination .disabled {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+/* ...existing code... */
+
+/* Integracao da demonstracao, preservando os estilos da listagem. */
+[hidden] { display: none !important; }
+.academic-notice { padding: 10px 14px; margin-bottom: 10px; background: #edf3fb; border: 1px solid #cbdaf0; border-radius: 6px; font-size: 12px; line-height: 1.45; }
+.status-message, #apiStatus { margin: 6px 0; font-size: 13px; line-height: 1.4; }
+.search-box { margin-bottom: 10px; }
+button.btn-view { cursor: pointer; }
+button:disabled { opacity: .55; cursor: default; }
+.parameters-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 10px 0; }
+.parameters-grid div, .prediction-result { background: white; border: 1px solid #e4e9ee; border-radius: 8px; padding: 12px; }
+.parameters-grid dt { font-size: 12px; color: #687681; margin-bottom: 5px; }
+.parameters-grid dd { font-size: 15px; margin: 0; }
+.prediction-result { margin-top: 12px; }
+.prediction-result p { margin-top: 6px; }
+.probability-value { font-size: 26px; color: #09489c; font-weight: 600; }
+.model-version { overflow-wrap: anywhere; font-size: 12px; }
+.evaluation-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+}
+.evaluation-container {
+    justify-content: center;
+    gap: clamp(10px, 1.8vh, 18px);
+}
+.evaluation-container > .page-title,
+.evaluation-container > .academic-notice,
+.evaluation-container > #apiStatus,
+.evaluation-container > .status-message,
+.evaluation-container > #retryPatient,
+.evaluation-container > #patientDetails,
+.evaluation-container > #predictionResult {
+    margin: 0;
+}
+.evaluation-container #apiStatus:empty {
+    display: none;
+}
+a:focus-visible, button:focus-visible { outline: 3px solid #6d9de1; outline-offset: 3px; }
+@media (max-width: 1000px) {
+    .header-content { padding-top: 10px; padding-bottom: 10px; }
+    .container { padding-top: 16px; padding-bottom: 12px; }
+}
+@media (max-width: 700px) {
+    .evaluation-container { justify-content: flex-start; }
+    .parameters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+    .parameters-grid div { padding: 9px; }
+    .parameters-grid dd { font-size: 13px; }
+}
